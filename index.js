@@ -1,14 +1,10 @@
-// this will read all the env vars in `.env`
-// **** How could this method be problamatic?
-// require("dotenv").config()
-
 const express = require("express")
 const helmet = require("helmet")
 const welcomeRouter = require("./welcome/welcome-router")
 const shoutsRouter = require("./shouts/shouts-router")
 
 const server = express()
-const port = process.env.PORT || 4000
+const port = 4000
 
 server.use(helmet())
 server.use(express.json())
