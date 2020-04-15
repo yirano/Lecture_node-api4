@@ -1,13 +1,16 @@
 const express = require("express")
 const helmet = require("helmet")
+const cors = require("cors")
 const welcomeRouter = require("./welcome/welcome-router")
 const shoutsRouter = require("./shouts/shouts-router")
 
 const server = express()
 const port = 4000
 
-server.use(helmet())
 server.use(express.json())
+server.use(helmet())
+server.use(cors())
+
 server.use("/", welcomeRouter)
 server.use("/shouts", shoutsRouter)
 
