@@ -1,7 +1,7 @@
 exports.up = async function(knex) {
-	await knex.schema.createTable("shouts", (tbl) => {
-		tbl.increments()
-		tbl.string("message").notNullable()
+	await knex.schema.createTable("shouts", (table) => {
+		table.increments()
+		table.string("message").notNullable()
 	})
 }
 
