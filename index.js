@@ -1,3 +1,6 @@
+// this reads in all of our environment variables from .env
+// require("dotenv").config()
+
 const express = require("express")
 const helmet = require("helmet")
 const cors = require("cors")
