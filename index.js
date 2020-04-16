@@ -8,6 +8,8 @@ const welcomeRouter = require("./welcome/welcome-router")
 const shoutsRouter = require("./shouts/shouts-router")
 
 const server = express()
+// process.env.PORT is set on Heroku, use it if it's set.
+// otherwise use a fallback value if `PORT` is not defined.
 const port = process.env.PORT || 4000
 
 server.use(express.json())
