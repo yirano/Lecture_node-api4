@@ -3,10 +3,17 @@ const shoutsModel = require("./shouts-model")
 
 const router = express.Router()
 
-router.get("/", (req, res, next) => {
-	shoutsModel.find()
-		.then((data) => res.status(200).json(data))
-		.catch((err) => next(err))
+router.get("/", async (req, res, next) => {
+	try {
+		const data = await shoutsModel.find()
+		res.status(200).json(data)
+	} catch (err) {
+		next(err)
+	}
+
+	// shoutsModel.find()
+	// 	.then((data) => res.status(200).json(data))
+	// 	.catch((err) => next(err))
 })
 
 router.get("/:id", validateShoutId(), (req, res, next) => {
@@ -26,19 +33,34 @@ router.delete("/:id", validateShoutId(), (req, res, next) => {
 })
 
 function validateShoutId() {
-	return (req, res, next) => {
-		shoutsModel.findById(req.params.id)
-			.then((shout) => {
-				if (shout) {
-					req.shout = shout
-					next()
-				} else {
-					res.status(404).json({
-						message: "Could not find shout",
-					})
-				}
-			})
-			.catch(next)
+	return async (req, res, next) => {
+		try {
+			const shout = await shoutsModel.findById(req.params.id)
+			
+			if (shout) {
+				req.shout = shout
+				next()
+			} else {
+				res.status(404).json({
+					message: "Could not find shout",
+				})
+			}
+		} catch (err) {
+			next(err)
+		}
+
+		// shoutsModel.findById(req.params.id)
+		// 	.then((shout) => {
+		// 		if (shout) {
+		// 			req.shout = shout
+		// 			next()
+		// 		} else {
+		// 			res.status(404).json({
+		// 				message: "Could not find shout",
+		// 			})
+		// 		}
+		// 	})
+		// 	.catch(next)
 	}
 }
 
