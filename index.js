@@ -11,7 +11,7 @@ const port = process.env.PORT || 4000
 server.use(express.json())
 server.use(helmet())
 server.use(cors())
-server.use(morgan("combined"))
+server.use(morgan("short"))
 
 server.use("/", welcomeRouter)
 server.use("/shouts", shoutsRouter)
