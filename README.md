@@ -24,3 +24,17 @@ Please fork this repository and follow along **using your fork** as the instruct
   - heroku
 
 ### Async/Await
+
+```javascript
+function greet() {
+  return "Hello, World"
+}
+
+greet() // Hello World
+
+async function() greeting{
+  const name = await someOtherPromise()
+  return "Hello World"
+}
+
+greeting() // Promise<"Hello World">
